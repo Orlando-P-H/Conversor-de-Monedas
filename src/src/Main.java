@@ -24,7 +24,8 @@ public class Main {
                     "\n4) Bolívar Venezolano => Dólar" +
                     "\n5) Dólar => Peso Colombiano" +
                     "\n6) Peso Colombiano => Dólar" +
-                    "\n7) Salir");
+                    "\n7) Salir" +
+                    "\n8) Ver historial de conversiones");
 
             opcion = scanner.nextInt();
 
@@ -36,6 +37,7 @@ public class Main {
                 case 5 -> convertir("USD", "COP", "dólares", "pesos colombianos", scanner, conv, gson);
                 case 6 -> convertir("COP", "USD", "pesos colombianos", "dólares", scanner, conv, gson);
                 case 7 -> System.out.println("Saliendo del programa...");
+                case 8 -> conv.mostrarHistorial();
                 default -> System.out.println("Opción no válida. Intenta de nuevo.");
             }
         } while (opcion != 7);
@@ -55,6 +57,9 @@ public class Main {
 
         System.out.printf("La cantidad de %.2f %s es igual a %.2f %s.%n",
                 cantidad, nombreOrigen, resultado, nombreDestino);
+
+        // Registrar la conversión
+        conv.registro(origen, destino, cantidad, resultado);
     }
 
 }
